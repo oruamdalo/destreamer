@@ -2,11 +2,6 @@
   <img src="https://github.com/snobu/destreamer/workflows/Node%20CI/badge.svg" alt="CI build status" />
 </a>
 
-## Federico II edition
-Use the command in this way:
-./destreamer.sh -i URL -u email -p password
-to automatically login in unina page after redirecting from microsoft
-
 # BREAKING
 
 **destreamer v3.0** is just around the corner. Download speed improvement is astonishing and we have a never before seen photo from the design sessions:<br><br>
