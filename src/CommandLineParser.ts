@@ -16,6 +16,12 @@ export const argv: any = yargs.options({
         describe: 'The username used to log into Microsoft Stream (enabling this will fill in the email field for you).',
         demandOption: false
     },
+    password: { // FOR FEDERICO II
+        alias: 'p',
+        type: 'string',
+        describe: 'The password used to log into Microsoft Stream (enabling this will fill in the email field for you).',
+        demandOption: false
+    },
     concat: { // FOR CONCATENATING VIDEOS
         alias: 'c',
         describe: 'If enabled concatenate videos in the order they are typed in the file',

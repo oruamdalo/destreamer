@@ -87,6 +87,31 @@ async function DoInteractiveLogin(url: string, username?: string): Promise<Sessi
         remember the credentials or it could still prompt the user for a password */
     }
 
+    // FEDERICO II - Wait for Federico II login page to open
+    if(username && password){ // This means that you are using this for Federico II
+        await browser.waitForTarget((target: puppeteer.Target) => target.url().includes("condividi.unina.it"), { timeout: 150000 });
+    
+        // Automatically fill username and password inputs
+        try {
+            await (await page.waitForSelector('#ContentPlaceHolder1_UsernameTextBox', {timeout: 5000})).focus();
+            await page.keyboard.type(username);
+            await (await page.waitForSelector('#ContentPlaceHolder1_PasswordTextBox', {timeout: 6000})).focus();
+            await page.keyboard.type(password);
+            await page.click('input[type="submit"');
+        }
+        catch (e) {
+            
+        }
+        
+        // Wait for microsoft confirmation login to open
+        await browser.waitForTarget((target: puppeteer.Target) => target.url().includes('login.microsoftonline.com'), { timeout: 150000 });
+        logger.info('Page login');
+        try{
+            await (await page.waitForSelector("#idSIButton9")).click();
+        }catch(e){
+        }
+    }//END FEDERICO II
+
     await browser.waitForTarget((target: puppeteer.Target) => target.url().endsWith('microsoftstream.com/'), { timeout: 150000 });
     logger.info('We are logged in.');
 
